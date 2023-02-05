@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import Animated, {BounceInDown, Easing} from 'react-native-reanimated';
 import {colors, appStyle} from '../constants/AppStyle';
 
 type Props = {
@@ -9,11 +10,14 @@ type Props = {
 
 const GeneralButton: React.FC<Props> = ({onPress, title}) => {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>
-        <Text style={styles.text}>{title}</Text>
-      </View>
-    </TouchableOpacity>
+    <Animated.View
+      entering={BounceInDown.duration(1800).easing(Easing.out(Easing.exp))}>
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.container}>
+          <Text style={styles.text}>{title}</Text>
+        </View>
+      </TouchableOpacity>
+    </Animated.View>
   );
 };
 

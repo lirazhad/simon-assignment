@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import {Text, View, TextInput, StyleSheet} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList, ScreensNames} from '../navigation/RootNavigator';
 import GeneralButton from '../components/GeneralButton';
-import {Text, View, TextInput, StyleSheet} from 'react-native';
+import Animated, {BounceInRight, Easing} from 'react-native-reanimated';
 import {colors, appStyle} from '../constants/AppStyle';
 import {getAsyncStorageItem, setStorageItem} from '../storage/asyncStorage';
 import {USER_NAME_KEY} from '../constants/Constants';
@@ -50,11 +51,16 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
               value={value}
             />
             <View style={styles.inputName}>
-              <TouchableOpacity onPress={onPressSetName}>
-                <View style={styles.setNameButton}>
-                  <Text>{'Set'}</Text>
-                </View>
-              </TouchableOpacity>
+              <Animated.View
+                entering={BounceInRight.duration(400).easing(
+                  Easing.out(Easing.exp),
+                )}>
+                <TouchableOpacity onPress={onPressSetName}>
+                  <View style={styles.setNameButton}>
+                    <Text>{'Set'}</Text>
+                  </View>
+                </TouchableOpacity>
+              </Animated.View>
             </View>
           </View>
         </View>
