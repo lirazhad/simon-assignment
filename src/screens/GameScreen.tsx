@@ -9,7 +9,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import {SharedValue} from 'react-native-reanimated/lib/types/lib/reanimated2/commonTypes';
-import {RootStackParamList} from '../navigation/RootNavigator';
+import {RootStackParamList, ScreensNames} from '../navigation/RootNavigator';
 import {colors, appStyle, playColors} from '../constants/AppStyle';
 import {GameState} from '../constants/GameState';
 import PlayButton from '../components/PlayButton';
@@ -18,9 +18,9 @@ import playSound from '../utils/SoundManager';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Game'
+  ScreensNames.Game
 >;
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Game'>;
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, ScreensNames.Game>;
 type Props = {
   navigation: ProfileScreenNavigationProp;
   route: ProfileScreenRouteProp;
@@ -129,7 +129,7 @@ const GameScreen: React.FC<Props> = ({navigation, route}) => {
           {
             text: 'OK',
             onPress: () => {
-              navigation.replace('Score', {
+              navigation.replace(ScreensNames.Score, {
                 userName: route.params.userName,
                 score,
               });

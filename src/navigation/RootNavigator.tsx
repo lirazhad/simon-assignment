@@ -5,6 +5,12 @@ import HomeScreen from '../screens/HomeScreen';
 import GameScreen from '../screens/GameScreen';
 import ScoreScreen from '../screens/ScoreScreen';
 
+export enum ScreensNames {
+  Home = 'Home',
+  Game = 'Game',
+  Score = 'Score',
+}
+
 export type RootStackParamList = {
   Home: undefined;
   Game: {userName?: string};
@@ -20,10 +26,10 @@ export const RootNavigator = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Home">
-        <RootStack.Screen name="Home" component={HomeScreen} />
-        <RootStack.Screen name="Game" component={GameScreen} />
-        <RootStack.Screen name="Score" component={ScoreScreen} />
+        initialRouteName={ScreensNames.Home}>
+        <RootStack.Screen name={ScreensNames.Home} component={HomeScreen} />
+        <RootStack.Screen name={ScreensNames.Game} component={GameScreen} />
+        <RootStack.Screen name={ScreensNames.Score} component={ScoreScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

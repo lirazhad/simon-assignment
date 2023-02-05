@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../navigation/RootNavigator';
+import {RootStackParamList, ScreensNames} from '../navigation/RootNavigator';
 import GeneralButton from '../components/GeneralButton';
 import {Text, View, TextInput, StyleSheet} from 'react-native';
 import {colors, appStyle} from '../constants/AppStyle';
@@ -10,7 +10,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Game'
+  ScreensNames.Home
 >;
 
 type Props = {
@@ -51,7 +51,9 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
             />
             <View style={styles.inputName}>
               <TouchableOpacity onPress={onPressSetName}>
-                <View style={styles.setNameButton} />
+                <View style={styles.setNameButton}>
+                  <Text>{'Set'}</Text>
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -59,13 +61,13 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
       )}
       <GeneralButton
         onPress={() => {
-          navigation.navigate('Game', {userName: userName});
+          navigation.navigate(ScreensNames.Game, {userName: userName});
         }}
         title={'Start Game'}
       />
       <GeneralButton
         onPress={() => {
-          navigation.replace('Score', {userName: userName});
+          navigation.replace(ScreensNames.Score, {userName: userName});
         }}
         title={'Show Scores'}
       />
@@ -111,7 +113,9 @@ const styles = StyleSheet.create({
     width: appStyle.TEXT_INPUT_HEIGHT,
     height: appStyle.TEXT_INPUT_HEIGHT,
     borderRadius: appStyle.TEXT_INPUT_HEIGHT / 2,
-    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.MAIN,
   },
 });
 

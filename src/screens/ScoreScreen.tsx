@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../navigation/RootNavigator';
+import {RootStackParamList, ScreensNames} from '../navigation/RootNavigator';
 import {RouteProp} from '@react-navigation/native';
 import {FlatList, View, StyleSheet, Text} from 'react-native';
 import ScoreListItem from '../components/ScoreListItem';
@@ -13,12 +13,12 @@ import {Score} from '../models/Score';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Score'
+  ScreensNames.Score
 >;
 
 type Props = {
   navigation: ProfileScreenNavigationProp;
-  route: RouteProp<RootStackParamList, 'Score'>;
+  route: RouteProp<RootStackParamList, ScreensNames.Score>;
 };
 
 const ScoreScreen: React.FC<Props> = ({navigation, route}) => {
@@ -75,11 +75,11 @@ const ScoreScreen: React.FC<Props> = ({navigation, route}) => {
   };
 
   const goToGameScreen = () => {
-    navigation.navigate('Game', {userName: route.params.userName});
+    navigation.navigate(ScreensNames.Game, {userName: route.params.userName});
   };
 
   const goToHomeScreen = () => {
-    navigation.navigate('Home');
+    navigation.navigate(ScreensNames.Home);
   };
 
   const insertRecord = () => {
